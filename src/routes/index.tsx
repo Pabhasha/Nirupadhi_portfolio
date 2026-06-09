@@ -491,6 +491,36 @@ function Portfolio() {
   );
 }
 
+function Reveal({ children, delay = 0, as: As = "div" }: { children: React.ReactNode; delay?: number; as?: React.ElementType }) {
+  const [visible, setVisible] = useState(false);
+  const ref = (node: HTMLElement | null) => {
+    if (!node || visible) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setVisible(true);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" },
+    );
+    io.observe(node);
+  };
+  return (
+    <As
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-6 blur-[2px]"
+      }`}
+    >
+      {children}
+    </As>
+  );
+}
+
 function Section({
   id,
   label,
@@ -503,13 +533,22 @@ function Section({
   tone?: "default" | "dark";
 }) {
   return (
-    <section
-      id={id}
-      className={`relative py-24 lg:py-32 ${tone === "dark" ? "bg-ink/40" : ""}`}
-    >
+    <section id={id} className="relative py-28 lg:py-40">
+      {tone === "dark" && (
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 bottom-0 -z-10 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 90% 60% at 50% 50%, oklch(0.22 0.03 50 / 0.55), transparent 70%)",
+          }}
+        />
+      )}
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <p className="section-label mb-8">{label}</p>
-        {children}
+        <Reveal>
+          <p className="section-label mb-10">{label}</p>
+        </Reveal>
+        <Reveal delay={120}>{children}</Reveal>
       </div>
     </section>
   );
@@ -527,16 +566,23 @@ function ProjectCard({
   role: string;
 }) {
   return (
-    <article className="group relative overflow-hidden bg-card">
+    <article className="group relative overflow-hidden bg-card rounded-sm transition-transform duration-500 hover:-translate-y-1">
       <div className="aspect-[3/4] overflow-hidden">
-        <img src={img} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <img
+          src={img}
+          alt={title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+        />
       </div>
-      <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 p-5">
+      <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/40 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 p-5">
         <p className="text-[0.65rem] uppercase tracking-[0.25em] text-gold mb-2">{role}</p>
         <h3 className="font-display text-2xl leading-tight">{title}</h3>
         {sinhala && <p className="text-xs text-muted-foreground mt-1 font-serif italic">{sinhala}</p>}
       </div>
+      <div className="absolute inset-0 ring-1 ring-inset ring-gold/0 group-hover:ring-gold/30 transition-all duration-500 pointer-events-none rounded-sm" />
     </article>
   );
 }
+
