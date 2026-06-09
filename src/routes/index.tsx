@@ -130,8 +130,9 @@ function Portfolio() {
       {/* HERO */}
       <section id="top" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <img src={hero} alt="Nirupadhi Perera performing on stage with an orchestra" className="w-full h-full object-cover object-top opacity-40" />
-          <div className="absolute inset-0 bg-linear-to-b from-ink/40 via-ink/70 to-background" />
+          <img src={hero} alt="Nirupadhi Perera performing on stage with an orchestra" className="w-full h-full object-cover object-[50%_20%] opacity-50 scale-105" />
+          <div className="absolute inset-0 bg-linear-to-b from-ink/30 via-ink/60 to-background" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,oklch(0.55_0.18_60/0.25),transparent_55%)]" />
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-10 items-end">
           <div className="lg:col-span-8 animate-fade-in">
