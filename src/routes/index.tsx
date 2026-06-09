@@ -131,7 +131,7 @@ function Portfolio() {
       <section id="top" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img src={hero} alt="Nirupadhi Perera performing on stage with an orchestra" className="w-full h-full object-cover object-top opacity-40" />
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/70 to-background" />
+          <div className="absolute inset-0 bg-linear-to-b from-ink/40 via-ink/70 to-background" />
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-10 items-end">
           <div className="lg:col-span-8 animate-fade-in">
@@ -171,7 +171,7 @@ function Portfolio() {
           <div className="lg:col-span-5 relative">
             <div className="aspect-[4/5] overflow-hidden rounded-sm relative group">
               <img src={about} alt="Nirupadhi Perera singing into a microphone" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-ink/60 via-transparent to-transparent" />
             </div>
             <div className="absolute -bottom-6 -right-6 hidden md:block bg-gold text-ink p-5 max-w-[14rem]">
               <p className="font-display text-2xl leading-tight">Born into music.</p>
@@ -273,7 +273,7 @@ function Portfolio() {
         <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-6">
           <div className="lg:col-span-7 aspect-[16/10] overflow-hidden group relative">
             <img src={yn1} alt="Yasharu and Nirupadhi" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/20 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
               <p className="text-xs uppercase tracking-[0.3em] text-gold mb-2">Featured</p>
               <h3 className="font-display text-3xl">The Duo</h3>
@@ -433,7 +433,7 @@ function Portfolio() {
       <section id="contact" className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img src={closing} alt="" className="w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-ink/90 to-background" />
+          <div className="absolute inset-0 bg-linear-to-b from-background via-ink/90 to-background" />
         </div>
         <div className="mx-auto max-w-5xl px-6 lg:px-10 text-center">
           <span className="section-label justify-center">Get in touch</span>
@@ -531,7 +531,7 @@ function ProjectCard({
       <div className="aspect-[3/4] overflow-hidden">
         <img src={img} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 p-5">
         <p className="text-[0.65rem] uppercase tracking-[0.25em] text-gold mb-2">{role}</p>
         <h3 className="font-display text-2xl leading-tight">{title}</h3>
