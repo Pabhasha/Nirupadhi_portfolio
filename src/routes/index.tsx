@@ -74,11 +74,11 @@ function Portfolio() {
           scrolled ? "bg-ink/80 backdrop-blur-xl border-b border-border" : "bg-transparent"
         }`}
       >
-        <nav className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2 group">
+        <nav className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center gap-8">
+          <a href="#top" className="flex items-center gap-2 group shrink-0">
             <span className="text-gradient-gold font-display text-xl tracking-wider">N · P</span>
           </a>
-          <ul className="hidden lg:flex items-center gap-8 text-sm">
+          <ul className="hidden lg:flex flex-1 items-center justify-center gap-7 text-sm">
             {NAV.map((n) => (
               <li key={n.id}>
                 <a
@@ -92,7 +92,7 @@ function Portfolio() {
           </ul>
           <a
             href="#contact"
-            className="hidden md:inline-flex items-center gap-2 text-sm border border-gold/40 text-gold px-4 py-2 rounded-full hover:bg-gold hover:text-ink transition-all duration-300"
+            className="hidden md:inline-flex items-center gap-2 text-sm border border-gold/40 text-gold px-4 py-2 rounded-full hover:bg-gold hover:text-ink transition-all duration-300 ml-auto lg:ml-0 shrink-0"
           >
             Get in touch <ArrowUpRight className="h-4 w-4" />
           </a>
@@ -130,8 +130,9 @@ function Portfolio() {
       {/* HERO */}
       <section id="top" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <img src={hero} alt="Nirupadhi Perera performing on stage with an orchestra" className="w-full h-full object-cover object-top opacity-40" />
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/70 to-background" />
+          <img src={hero} alt="Nirupadhi Perera performing on stage with an orchestra" className="w-full h-full object-cover object-[50%_20%] opacity-50 scale-105" />
+          <div className="absolute inset-0 bg-linear-to-b from-ink/30 via-ink/60 to-background" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,oklch(0.55_0.18_60/0.25),transparent_55%)]" />
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-10 w-full grid lg:grid-cols-12 gap-10 items-end">
           <div className="lg:col-span-8 animate-fade-in">
@@ -171,7 +172,7 @@ function Portfolio() {
           <div className="lg:col-span-5 relative">
             <div className="aspect-[4/5] overflow-hidden rounded-sm relative group">
               <img src={about} alt="Nirupadhi Perera singing into a microphone" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-ink/60 via-transparent to-transparent" />
             </div>
             <div className="absolute -bottom-6 -right-6 hidden md:block bg-gold text-ink p-5 max-w-[14rem]">
               <p className="font-display text-2xl leading-tight">Born into music.</p>
@@ -273,7 +274,7 @@ function Portfolio() {
         <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-6">
           <div className="lg:col-span-7 aspect-[16/10] overflow-hidden group relative">
             <img src={yn1} alt="Yasharu and Nirupadhi" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/20 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
               <p className="text-xs uppercase tracking-[0.3em] text-gold mb-2">Featured</p>
               <h3 className="font-display text-3xl">The Duo</h3>
@@ -433,7 +434,7 @@ function Portfolio() {
       <section id="contact" className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img src={closing} alt="" className="w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-ink/90 to-background" />
+          <div className="absolute inset-0 bg-linear-to-b from-background via-ink/90 to-background" />
         </div>
         <div className="mx-auto max-w-5xl px-6 lg:px-10 text-center">
           <span className="section-label justify-center">Get in touch</span>
@@ -491,6 +492,36 @@ function Portfolio() {
   );
 }
 
+function Reveal({ children, delay = 0, as: As = "div" }: { children: React.ReactNode; delay?: number; as?: React.ElementType }) {
+  const [visible, setVisible] = useState(false);
+  const ref = (node: HTMLElement | null) => {
+    if (!node || visible) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setVisible(true);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" },
+    );
+    io.observe(node);
+  };
+  return (
+    <As
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-6 blur-[2px]"
+      }`}
+    >
+      {children}
+    </As>
+  );
+}
+
 function Section({
   id,
   label,
@@ -503,13 +534,22 @@ function Section({
   tone?: "default" | "dark";
 }) {
   return (
-    <section
-      id={id}
-      className={`relative py-24 lg:py-32 ${tone === "dark" ? "bg-ink/40" : ""}`}
-    >
+    <section id={id} className="relative py-28 lg:py-40">
+      {tone === "dark" && (
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 bottom-0 -z-10 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 90% 60% at 50% 50%, oklch(0.22 0.03 50 / 0.55), transparent 70%)",
+          }}
+        />
+      )}
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <p className="section-label mb-8">{label}</p>
-        {children}
+        <Reveal>
+          <p className="section-label mb-10">{label}</p>
+        </Reveal>
+        <Reveal delay={120}>{children}</Reveal>
       </div>
     </section>
   );
@@ -527,16 +567,23 @@ function ProjectCard({
   role: string;
 }) {
   return (
-    <article className="group relative overflow-hidden bg-card">
+    <article className="group relative overflow-hidden bg-card rounded-sm transition-transform duration-500 hover:-translate-y-1">
       <div className="aspect-[3/4] overflow-hidden">
-        <img src={img} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <img
+          src={img}
+          alt={title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+        />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 p-5">
+      <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/40 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 p-5">
         <p className="text-[0.65rem] uppercase tracking-[0.25em] text-gold mb-2">{role}</p>
         <h3 className="font-display text-2xl leading-tight">{title}</h3>
         {sinhala && <p className="text-xs text-muted-foreground mt-1 font-serif italic">{sinhala}</p>}
       </div>
+      <div className="absolute inset-0 ring-1 ring-inset ring-gold/0 group-hover:ring-gold/30 transition-all duration-500 pointer-events-none rounded-sm" />
     </article>
   );
 }
+

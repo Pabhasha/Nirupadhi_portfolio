@@ -104,11 +104,11 @@
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 500;
+  &::before {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+  }
 }
 
-@utility section-label::before {
-  content: "";
-  width: 2rem;
-  height: 1px;
-  background: var(--gold);
-}
