@@ -74,11 +74,11 @@ function Portfolio() {
           scrolled ? "bg-ink/80 backdrop-blur-xl border-b border-border" : "bg-transparent"
         }`}
       >
-        <nav className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2 group">
+        <nav className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center gap-8">
+          <a href="#top" className="flex items-center gap-2 group shrink-0">
             <span className="text-gradient-gold font-display text-xl tracking-wider">N · P</span>
           </a>
-          <ul className="hidden lg:flex items-center gap-8 text-sm">
+          <ul className="hidden lg:flex flex-1 items-center justify-center gap-7 text-sm">
             {NAV.map((n) => (
               <li key={n.id}>
                 <a
@@ -92,7 +92,7 @@ function Portfolio() {
           </ul>
           <a
             href="#contact"
-            className="hidden md:inline-flex items-center gap-2 text-sm border border-gold/40 text-gold px-4 py-2 rounded-full hover:bg-gold hover:text-ink transition-all duration-300"
+            className="hidden md:inline-flex items-center gap-2 text-sm border border-gold/40 text-gold px-4 py-2 rounded-full hover:bg-gold hover:text-ink transition-all duration-300 ml-auto lg:ml-0 shrink-0"
           >
             Get in touch <ArrowUpRight className="h-4 w-4" />
           </a>
