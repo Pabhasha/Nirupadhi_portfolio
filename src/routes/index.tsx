@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Mail, Instagram, Facebook, Youtube, Award, Music, Mic, Radio, ArrowUpRight, Disc3 } from "lucide-react";
 
 import hero from "@/assets/hero.jpg";
@@ -494,8 +494,14 @@ function Portfolio() {
 
 function Reveal({ children, delay = 0, as: As = "div" }: { children: React.ReactNode; delay?: number; as?: React.ElementType }) {
   const [visible, setVisible] = useState(false);
-  const ref = (node: HTMLElement | null) => {
-    if (!node || visible) return;
+  const ref = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -505,13 +511,22 @@ function Reveal({ children, delay = 0, as: As = "div" }: { children: React.React
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px -5% 0px" },
     );
     io.observe(node);
-  };
+    // Safety: if element is already in/past the viewport on mount, reveal immediately
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) setVisible(true);
+    // Final fallback in case observer never fires
+    const t = window.setTimeout(() => setVisible(true), 1200);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(t);
+    };
+  }, []);
   return (
     <As
-      ref={ref}
+      ref={ref as never}
       style={{ transitionDelay: `${delay}ms` }}
       className={`transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
         visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-6 blur-[2px]"
@@ -521,6 +536,7 @@ function Reveal({ children, delay = 0, as: As = "div" }: { children: React.React
     </As>
   );
 }
+
 
 function Section({
   id,
