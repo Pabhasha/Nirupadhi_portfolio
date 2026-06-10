@@ -47,7 +47,7 @@ const NAV = [
   { id: "about", label: "About" },
   { id: "skills", label: "Craft" },
   { id: "songs", label: "Songs" },
-  { id: "yasharu", label: "Yasharu & Nirupadhi" },
+  { id: "yasharu", label: "Duo" },
   { id: "tv", label: "TV" },
   { id: "concerts", label: "Concerts" },
   { id: "outreach", label: "Outreach" },
