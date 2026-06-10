@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Mail, Instagram, Facebook, Youtube, Award, Music, Mic, Radio, ArrowUpRight, Disc3 } from "lucide-react";
 
 import hero from "@/assets/hero.jpg";
