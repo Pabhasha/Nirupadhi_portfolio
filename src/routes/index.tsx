@@ -424,8 +424,9 @@ function Portfolio() {
             </ul>
           </div>
           <div className="lg:col-span-5 grid grid-cols-2 gap-4 content-start">
-            <img src={award1} alt="Award ceremony" className="aspect-[3/4] object-cover w-full" />
-            <img src={award2} alt="Award trophy" className="aspect-[3/4] object-cover w-full mt-10" />
+            <img loading="lazy" decoding="async" src={award1} alt="Award ceremony" className="aspect-[3/4] object-cover w-full" />
+            <img loading="lazy" decoding="async" src={award2} alt="Award trophy" className="aspect-[3/4] object-cover w-full mt-10" />
+
           </div>
         </div>
       </Section>
