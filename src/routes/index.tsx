@@ -130,7 +130,7 @@ function Portfolio() {
       {/* HERO */}
       <section id="top" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <img src={hero} alt="Nirupadhi Perera performing on stage with an orchestra" className="w-full h-full object-cover object-[50%_20%] opacity-50 scale-105" />
+          <img loading="eager" fetchPriority="high" decoding="async" src={hero} alt="Nirupadhi Perera performing on stage with an orchestra" className="w-full h-full object-cover object-[50%_20%] opacity-50 scale-105" />
           <div className="absolute inset-0 bg-linear-to-b from-ink/30 via-ink/60 to-background" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,oklch(0.55_0.18_60/0.25),transparent_55%)]" />
         </div>
@@ -171,7 +171,7 @@ function Portfolio() {
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5 relative">
             <div className="aspect-[4/5] overflow-hidden rounded-sm relative group">
-              <img src={about} alt="Nirupadhi Perera singing into a microphone" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img loading="lazy" decoding="async" src={about} alt="Nirupadhi Perera singing into a microphone" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-linear-to-t from-ink/60 via-transparent to-transparent" />
             </div>
             <div className="absolute -bottom-6 -right-6 hidden md:block bg-gold text-ink p-5 max-w-[14rem]">
@@ -273,7 +273,7 @@ function Portfolio() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-6">
           <div className="lg:col-span-7 aspect-[16/10] overflow-hidden group relative">
-            <img src={yn1} alt="Yasharu and Nirupadhi" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <img loading="lazy" decoding="async" src={yn1} alt="Yasharu and Nirupadhi" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/20 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
               <p className="text-xs uppercase tracking-[0.3em] text-gold mb-2">Featured</p>
@@ -288,7 +288,7 @@ function Portfolio() {
               { img: ynNilahas, title: "Nil Ahas Thale", sinhala: "නිල් අහස් තලේ" },
             ].map((y) => (
               <div key={y.title} className="aspect-square overflow-hidden relative group">
-                <img src={y.img} alt={y.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img loading="lazy" decoding="async" src={y.img} alt={y.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-ink/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
                   <p className="font-display text-lg">{y.title}</p>
                   <p className="text-xs text-muted-foreground">{y.sinhala}</p>
@@ -316,7 +316,7 @@ function Portfolio() {
           ].map((t) => (
             <div key={t.title} className="group">
               <div className="aspect-[4/3] overflow-hidden">
-                <img src={t.img} alt={t.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img loading="lazy" decoding="async" src={t.img} alt={t.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               </div>
               <div className="pt-4">
                 <p className="text-xs uppercase tracking-widest text-gold/80">{t.note}</p>
@@ -353,10 +353,10 @@ function Portfolio() {
             </ul>
           </div>
           <div className="lg:col-span-7 grid grid-cols-6 gap-3 auto-rows-[100px] sm:auto-rows-[140px]">
-            <img src={concerts} alt="Naadhathirtha 2017" className="col-span-6 row-span-2 object-cover w-full h-full" />
-            <img src={concert1} alt="Crossroads" className="col-span-3 row-span-2 object-cover w-full h-full" />
-            <img src={concert2} alt="Live show" className="col-span-3 row-span-2 object-cover w-full h-full" />
-            <img src={perth1} alt="Perth Live" className="col-span-6 row-span-2 object-cover w-full h-full" />
+            <img loading="lazy" decoding="async" src={concerts} alt="Naadhathirtha 2017" className="col-span-6 row-span-2 object-cover w-full h-full" />
+            <img loading="lazy" decoding="async" src={concert1} alt="Crossroads" className="col-span-3 row-span-2 object-cover w-full h-full" />
+            <img loading="lazy" decoding="async" src={concert2} alt="Live show" className="col-span-3 row-span-2 object-cover w-full h-full" />
+            <img loading="lazy" decoding="async" src={perth1} alt="Perth Live" className="col-span-6 row-span-2 object-cover w-full h-full" />
           </div>
         </div>
       </Section>
@@ -366,7 +366,7 @@ function Portfolio() {
         <div className="grid lg:grid-cols-2 gap-10">
           <article className="group">
             <div className="aspect-[16/10] overflow-hidden mb-6">
-              <img src={online1} alt="Online lockdown live shows" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img loading="lazy" decoding="async" src={online1} alt="Online lockdown live shows" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
             <h3 className="font-display text-3xl mb-3">Online Live Shows</h3>
             <p className="text-muted-foreground font-serif">
@@ -378,7 +378,7 @@ function Portfolio() {
           </article>
           <article className="group">
             <div className="aspect-[16/10] overflow-hidden mb-6">
-              <img src={workshop} alt="Perth Sinhala School workshop" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img loading="lazy" decoding="async" src={workshop} alt="Perth Sinhala School workshop" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
             <h3 className="font-display text-3xl mb-3">Perth Sinhala School Workshop & Concert</h3>
             <p className="text-muted-foreground font-serif">
@@ -392,7 +392,7 @@ function Portfolio() {
         <div className="mt-14">
           <p className="section-label mb-6">Down the Memory Lane</p>
           <div className="aspect-[21/9] overflow-hidden">
-            <img src={memory1} alt="Down the memory lane" className="w-full h-full object-cover" />
+            <img loading="lazy" decoding="async" src={memory1} alt="Down the memory lane" className="w-full h-full object-cover" />
           </div>
         </div>
       </Section>
@@ -433,7 +433,7 @@ function Portfolio() {
       {/* CONTACT */}
       <section id="contact" className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <img src={closing} alt="" className="w-full h-full object-cover opacity-20" />
+          <img loading="lazy" decoding="async" src={closing} alt="" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-linear-to-b from-background via-ink/90 to-background" />
         </div>
         <div className="mx-auto max-w-5xl px-6 lg:px-10 text-center">
