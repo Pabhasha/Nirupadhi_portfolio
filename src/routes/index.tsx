@@ -3,7 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { Mail, Instagram, Facebook, Youtube, Award, Music, Mic, Radio, ArrowUpRight, Disc3 } from "lucide-react";
 
 import hero from "@/assets/hero.jpg";
-import about from "@/assets/about.jpg";
+import aboutAsset from "@/assets/about-award.jpg.asset.json";
+import familyAsset from "@/assets/family.jpg.asset.json";
+const about = aboutAsset.url;
+const family = familyAsset.url;
 import songs from "@/assets/songs.jpg";
 import songObaAmma from "@/assets/song-oba-amma.jpg";
 import songAmaliya from "@/assets/song-amaliya.jpg";
