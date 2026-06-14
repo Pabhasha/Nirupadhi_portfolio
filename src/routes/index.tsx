@@ -3,7 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { Mail, Instagram, Facebook, Youtube, Award, Music, Mic, Radio, ArrowUpRight, Disc3 } from "lucide-react";
 
 import hero from "@/assets/hero.jpg";
-import about from "@/assets/about.jpg";
+import aboutAsset from "@/assets/about-award.jpg.asset.json";
+import familyAsset from "@/assets/family.jpg.asset.json";
+const about = aboutAsset.url;
+const family = familyAsset.url;
 import songs from "@/assets/songs.jpg";
 import songObaAmma from "@/assets/song-oba-amma.jpg";
 import songAmaliya from "@/assets/song-amaliya.jpg";
@@ -175,12 +178,17 @@ function Portfolio() {
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5 relative">
             <div className="aspect-[4/5] overflow-hidden rounded-sm relative group">
-              <img loading="lazy" decoding="async" src={about} alt="Nirupadhi Perera singing into a microphone" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img loading="lazy" decoding="async" src={about} alt="Nirupadhi Perera holding a Sumathi Award trophy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-linear-to-t from-ink/60 via-transparent to-transparent" />
             </div>
-            <div className="absolute -bottom-6 -right-6 hidden md:block bg-gold text-ink p-5 max-w-[14rem]">
-              <p className="font-display text-2xl leading-tight">Born into music.</p>
-              <p className="text-xs mt-2 uppercase tracking-widest">A family legacy</p>
+            <div className="absolute -bottom-8 -right-6 hidden md:block w-56 shadow-2xl ring-1 ring-gold/40">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img loading="lazy" decoding="async" src={family} alt="Nirupadhi Perera with his family" className="w-full h-full object-cover" />
+              </div>
+              <div className="bg-gold text-ink px-4 py-3">
+                <p className="font-display text-lg leading-tight">Born into music.</p>
+                <p className="text-[10px] mt-1 uppercase tracking-widest">A family legacy</p>
+              </div>
             </div>
           </div>
           <div className="lg:col-span-7 space-y-6 lg:pl-10">
